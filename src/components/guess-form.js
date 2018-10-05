@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './guess-form.css';
+import './styles/guess-form.css';
 
 export default class GuessForm extends React.Component {
   onSubmit(event) {
@@ -29,12 +29,7 @@ export default class GuessForm extends React.Component {
           ref={input => (this.input = input)}
           required
         />
-        <button 
-          type="submit"
-          name="submit"
-          id="guessButton" 
-          className="button"
-        >
+        <button type="submit" name="submit" id="guessButton" className="button">
           Guess
         </button>
       </form>
