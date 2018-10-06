@@ -2,6 +2,7 @@ import React from 'react';
 
 import Feedback from './feedback';
 import GuessForm from './guess-form';
+// import store from '../store';
 
 export default function GuessSection(props) {
   const { feedback, guessCount } = props;

@@ -4,6 +4,8 @@ import Header from './header';
 import GuessSection from './guess-section';
 import StatusSection from './status-section';
 import InfoSection from './info-section';
+// import store from '../store';
+// import { setGuesses } from '../actions/gameActions';
 
 export default class Game extends React.Component {
   constructor(props) {
@@ -36,17 +38,19 @@ export default class Game extends React.Component {
 
     let feedback;
     if (difference >= 50) {
-      feedback = 'You\'re Ice Cold...';
+      feedback = "You're Ice Cold...";
     } else if (difference >= 30) {
-      feedback = 'You\'re Cold...';
+      feedback = "You're Cold...";
     } else if (difference >= 10) {
-      feedback = 'You\'re Warm.';
+      feedback = "You're Warm.";
     } else if (difference >= 1) {
-      feedback = 'You\'re Hot!';
+      feedback = "You're Hot!";
     } else {
       feedback = 'You got it!';
     }
 
+    // store.dispatch(setGuesses(guess));
+    // console.log(store.getState());
     this.setState({
       feedback,
       guesses: [...this.state.guesses, guess]
@@ -66,12 +70,15 @@ export default class Game extends React.Component {
     // pluralize the nouns in this aural update.
     const pluralize = guesses.length !== 1;
 
-    let  auralStatus = `Here's the status of the game right now: ${feedback} You've made ${guesses.length} ${pluralize ? 'guesses' : 'guess'}.`;
+    let auralStatus = `Here's the status of the game right now: ${feedback} You've made ${
+      guesses.length
+    } ${pluralize ? 'guesses' : 'guess'}.`;
 
     if (guesses.length > 0) {
-      auralStatus += ` ${pluralize ? 'In order of most- to least-recent, they are' : 'It was'}: ${guesses.reverse().join(', ')}`;
+      auralStatus += ` ${
+        pluralize ? 'In order of most- to least-recent, they are' : 'It was'
+      }: ${guesses.reverse().join(', ')}`;
     }
-
 
     this.setState({ auralStatus });
   }
@@ -92,9 +99,7 @@ export default class Game extends React.Component {
             guessCount={guessCount}
             onMakeGuess={guess => this.makeGuess(guess)}
           />
-          <StatusSection guesses={guesses} 
-            auralStatus={auralStatus}
-          />
+          <StatusSection guesses={guesses} auralStatus={auralStatus} />
           <InfoSection />
         </main>
       </div>
